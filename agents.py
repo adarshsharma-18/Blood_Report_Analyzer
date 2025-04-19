@@ -5,10 +5,10 @@ from tools.search_tools import SearchTools
 from tools.summarise_tools import SummariseTools
 from langchain_groq import ChatGroq
 
-llm=ChatGroq(
-    api_key=os.getenv("GROQ_API_KEY"),
-    model="mixtral-8x7b-32768",
-)
+Deepseek = LLM(
+    model= "ollama/deepseek-r1", # "ollama/llama3.1" or you can use any local model
+    base_url="http://localhost:11434"
+    )
 
 class BloodAgents:
     def __init__(self):
@@ -35,7 +35,7 @@ class BloodAgents:
                 SummariseTools.summarize_text
                 ],
             verbose=True,
-            llm=llm,
+            llm=self.Deepseek,
             max_iter=2,
         )
 
@@ -61,5 +61,5 @@ class BloodAgents:
                 ],
             verbose=True,
             max_iter=2,
-            llm = llm,
+            llm=self.Deepseek,
         )
